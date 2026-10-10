@@ -3,25 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#075e36">
   <title>Mai Ambato Player</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header>
+    <h1>🎵 Mai Ambato Player</h1>
+    <p>Waƙoƙin Mai Ambato</p>
+  </header>
 
-<div class="container">
-<h1>🎵 Mai Ambato Player</h1>
+  <main>
+    <section class="player">
+      <h2 id="songTitle">Zaɓi waƙa domin sauraro</h2>
+      <audio id="audioPlayer" controls preload="metadata"></audio>
+    </section>
 
-<ul>
-<li onclick="playSong('songs/MAI AMBATO SAYYADI ALI.mp3')">MAI AMBATO SAYYADI ALI</li>
-<li onclick="playSong('songs/MAI AMBATO FADIMIYYA.mp3')">MAI AMBATO FADIMIYYA</li>
-<li onclick="playSong('songs/MAI AMBATO YA MAULANA.mp3')">MAI AMBATO YA MAULANA</li>
-</ul>
+    <section class="library">
+      <h2>📀 Kundin Waƙoƙi</h2>
+      <p id="songCount">Ana loda waƙoƙi...</p>
+      <input
+        type="search"
+        id="searchSong"
+        placeholder="🔎 Nemi waƙa..."
+        aria-label="Nemi waƙa"
+      >
+      <ul id="songList"></ul>
+      <p id="emptyMessage" hidden>Ba a sami waƙar da ka nema ba.</p>
+    </section>
+  </main>
 
-<audio id="player" controls></audio>
+  <footer>
+    <p>© Mai Ambato Player</p>
+  </footer>
 
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
-</html>0
-0
-
+</html>
