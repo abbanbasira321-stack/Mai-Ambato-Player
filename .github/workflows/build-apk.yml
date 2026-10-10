@@ -34,6 +34,9 @@ jobs:
             platforms;android-35
             build-tools;35.0.0
 
+      - name: Accept Android SDK Licenses
+        run: yes | sdkmanager --licenses
+
       - name: Install Android SDK packages
         run: |
           sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
