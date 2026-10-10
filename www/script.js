@@ -4,10 +4,33 @@ const searchSong = document.getElementById("searchSong");
 const audioPlayer = document.getElementById("audioPlayer");
 const songTitle = document.getElementById("songTitle");
 const emptyMessage = document.getElementById("emptyMessage");
+const prevSong = document.getElementById("prevSong");
+const nextSong = document.getElementById("nextSong");
 
 let songs = [];
+let currentSongIndex = -1;
 
-function displaySongs(filter = "") {
+function playSong(index) {
+  if (!songs.length) return;
+
+  // Bari jerin waƙoƙi ya zagaya daga farko zuwa ƙarshe.
+  currentSongIndex = (index + songs.length) % songs.length;
+
+  const song = songs[currentSongIndex];
+
+  audioPlayer.src = "songs/" + encodeURIComponent(song);
+  songTitle.textContent = song.replace(/\.[^.]+$/, "");
+
+  audioPlayer.play().catch(error => {
+    console.error("Ba a iya kunna waƙar ba:", error);
+    songTitle.textContent =
+      "Ba a iya kunna waƙar ba. Gwada sake dannawa.";
+  });
+
+  displaySongs(searchSong.value, false);
+}
+
+function displaySongs(filter = "", updateCount = true) {
   songList.innerHTML = "";
 
   const query = filter.trim().toLowerCase();
@@ -16,8 +39,10 @@ function displaySongs(filter = "") {
     song.toLowerCase().includes(query)
   );
 
-  songCount.textContent =
-    `An samo waƙoƙi ${filteredSongs.length} cikin ${songs.length}`;
+  if (updateCount) {
+    songCount.textContent =
+      `An samo waƙoƙi ${filteredSongs.length} cikin ${songs.length}`;
+  }
 
   emptyMessage.hidden = filteredSongs.length !== 0;
 
@@ -27,16 +52,13 @@ function displaySongs(filter = "") {
 
     button.type = "button";
     button.className = "song-button";
-    button.textContent = "▶ " + song.replace(/\.[^.]+$/, "");
+    button.textContent =
+      (songs[currentSongIndex] === song ? "🔊 " : "▶ ") +
+      song.replace(/\.[^.]+$/, "");
 
     button.addEventListener("click", () => {
-      audioPlayer.src = "songs/" + encodeURIComponent(song);
-      songTitle.textContent = song.replace(/\.[^.]+$/, "");
-
-      audioPlayer.play().catch(error => {
-        console.error("Ba a iya kunna waƙar ba:", error);
-        songTitle.textContent = "Ba a iya kunna waƙar ba. Sake gwadawa.";
-      });
+      const index = songs.indexOf(song);
+      playSong(index);
     });
 
     li.appendChild(button);
@@ -52,8 +74,19 @@ async function loadSongs() {
       throw new Error("An kasa karanta jerin waƙoƙi");
     }
 
-    songs = await response.json();
-    displaySongs();
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      throw new Error("Tsarin songs.json bai dace ba");
+    }
+
+    songs = data.filter(song => typeof song === "string");
+
+    displaySongs(searchSong.value);
+
+    if (!songs.length) {
+      songCount.textContent = "Babu waƙoƙi a cikin jerin.";
+    }
   } catch (error) {
     console.error(error);
     songCount.textContent = "An samu matsala wajen loda waƙoƙi.";
@@ -62,6 +95,25 @@ async function loadSongs() {
       "Tabbatar cewa fayil ɗin songs.json yana cikin www.";
   }
 }
+
+prevSong.addEventListener("click", () => {
+  if (currentSongIndex === -1) {
+    playSong(songs.length - 1);
+  } else {
+    playSong(currentSongIndex - 1);
+  }
+});
+
+nextSong.addEventListener("click", () => {
+  playSong(currentSongIndex + 1);
+});
+
+// Idan waƙa ta ƙare, kunna waƙa ta gaba.
+audioPlayer.addEventListener("ended", () => {
+  if (songs.length) {
+    playSong(currentSongIndex + 1);
+  }
+});
 
 searchSong.addEventListener("input", () => {
   displaySongs(searchSong.value);
