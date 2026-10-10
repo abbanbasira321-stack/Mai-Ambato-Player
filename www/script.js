@@ -6,6 +6,8 @@ const songTitle = document.getElementById("songTitle");
 const emptyMessage = document.getElementById("emptyMessage");
 const prevSong = document.getElementById("prevSong");
 const nextSong = document.getElementById("nextSong");
+const playPauseSong = document.getElementById("playPauseSong");
+
 
 let songs = [];
 let currentSongIndex = -1;
@@ -106,6 +108,22 @@ prevSong.addEventListener("click", () => {
 
 nextSong.addEventListener("click", () => {
   playSong(currentSongIndex + 1);
+});
+
+
+// Maɓallin Play/Pause
+playPauseSong.addEventListener("click", () => {
+  if (!songs.length) return;
+
+  if (currentSongIndex === -1) {
+    playSong(0);
+  } else if (audioPlayer.paused) {
+    audioPlayer.play().catch(error => {
+      console.error("Ba a iya ci gaba da kunna waƙar ba:", error);
+    });
+  } else {
+    audioPlayer.pause();
+  }
 });
 
 // Idan waƙa ta ƙare, kunna waƙa ta gaba.
