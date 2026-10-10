@@ -478,3 +478,331 @@ body {
 }
 
 /* END FIXED BOTTOM MUSIC PLAYER */
+/* HOTON DA RUBUTUN SU TSAYA A SAMA */
+
+.hero {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #07110c;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+/* Babban hoton Mai Ambato ya tsaya ba tare da animation ba */
+.cover-image {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Kada hoton ya yi girma ko raguwa da kansa */
+.cover-frame {
+  animation: none !important;
+}
+
+/* Neman waka da jerin waƙoƙi */
+.library {
+  position: relative;
+  z-index: 1;
+}
+
+/* Jerin waƙoƙi ne kawai zai riƙa gungurawa */
+#songList {
+  position: relative;
+}
+
+/* Kare sararin akwatin Play da ke ƙasa */
+body {
+  padding-bottom: 155px !important;
+}
+
+/* ======================================
+   MAI AMBATO - FIXED SCREEN MUSIC LAYOUT
+   ====================================== */
+
+html {
+  height: 100%;
+  overflow: hidden;
+  scroll-behavior: auto;
+}
+
+body {
+  height: 100vh !important;
+  height: 100dvh !important;
+  min-height: 0 !important;
+  padding: 0 0 110px !important;
+  margin: 0;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sunan app ya tsaya a sama */
+.topbar {
+  flex: 0 0 auto;
+  padding: 9px 14px;
+  position: relative;
+  z-index: 20;
+}
+
+/* Babban hoton da rubutunsa su tsaya */
+main {
+  width: 100% !important;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0 10px;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Hoton Mai Ambato da rubutun sa */
+.hero {
+  position: relative !important;
+  top: auto !important;
+  z-index: 2;
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: 105px minmax(0, 1fr);
+  align-items: center;
+  gap: 13px;
+  padding: 10px 0;
+  margin: 0;
+  background: transparent;
+}
+
+.cover-frame {
+  width: 105px;
+  height: 105px;
+  max-width: 105px;
+  max-height: 105px;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  animation: none !important;
+  transform: none !important;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: none !important;
+  transform: none !important;
+}
+
+.cover-label {
+  padding: 12px 4px 7px;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.hero-text {
+  min-width: 0;
+}
+
+.hero-text .eyebrow {
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.hero-text h2 {
+  font-size: clamp(19px, 5vw, 25px);
+  line-height: 1.12;
+  margin: 5px 0;
+}
+
+.hero-text p {
+  font-size: 10px;
+  line-height: 1.4;
+  margin: 5px 0;
+}
+
+.explore-btn {
+  margin-top: 4px;
+  padding: 7px 10px;
+  font-size: 10px;
+  border-radius: 8px;
+}
+
+/* Yankin jerin wakoki */
+.library {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0 0 8px !important;
+  padding: 12px !important;
+  border-radius: 15px;
+}
+
+/* Taken wakoki ya tsaya */
+.library .section-heading {
+  flex: 0 0 auto;
+  margin-bottom: 9px;
+}
+
+.library .section-heading h2 {
+  font-size: 17px;
+}
+
+.library .eyebrow {
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+/* Akwatin neman waka ya tsaya */
+.search-box {
+  flex: 0 0 auto;
+  min-height: 40px;
+}
+
+.search-box input {
+  padding: 10px 0;
+  font-size: 13px;
+}
+
+/* Yawan wakoki ya tsaya */
+.song-count {
+  flex: 0 0 auto;
+  margin: 8px 0;
+  font-size: 11px;
+}
+
+/* Wakoki kadai suke gungurawa */
+#songList {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  align-content: start;
+  padding: 0 2px 12px 0;
+}
+
+#songList li {
+  flex: 0 0 auto;
+}
+
+.song-button {
+  padding: 12px 10px;
+}
+
+/* Sakon rashin samun waka */
+#emptyMessage {
+  flex: 0 0 auto;
+}
+
+/* Footer ba ya bukatar sarari a wannan tsarin */
+footer {
+  display: none !important;
+}
+
+/* Akwatin Play ya tsaya a kasa */
+.now-playing {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  top: auto !important;
+  z-index: 9999 !important;
+  width: auto !important;
+  max-width: 850px !important;
+  margin: 0 auto !important;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom)) !important;
+  background: rgba(5, 18, 11, 0.98) !important;
+  border: 1px solid #c9a227 !important;
+  border-bottom: none !important;
+  border-radius: 16px 16px 0 0 !important;
+  box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(14px);
+}
+
+.now-playing .section-heading {
+  display: none !important;
+}
+
+.now-playing .track-info {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  margin: 0 0 4px !important;
+}
+
+.now-playing .track-art {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  font-size: 20px !important;
+  border-radius: 9px !important;
+}
+
+.now-playing .track-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.now-playing .track-details h3 {
+  margin: 0 !important;
+  font-size: 12px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.now-playing .track-details p {
+  display: none !important;
+}
+
+.now-playing audio {
+  display: block !important;
+  width: 100% !important;
+  height: 40px !important;
+  margin: 0 !important;
+}
+
+/* Karamin allo */
+@media (max-width: 360px) {
+  .hero {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .cover-frame {
+    width: 88px;
+    height: 88px;
+    max-width: 88px;
+    max-height: 88px;
+  }
+
+  .hero-text h2 {
+    font-size: 18px;
+  }
+
+  .hero-text p {
+    font-size: 9px;
+  }
+
+  .library {
+    padding: 9px !important;
+  }
+}
+
+/* Manyan allo */
+@media (min-width: 700px) {
+  .hero {
+    grid-template-columns: 150px minmax(0, 1fr);
+  }
+
+  .cover-frame {
+    width: 150px;
+    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+  }
+}
+
+/* KARSHEN SABON TSARI */
