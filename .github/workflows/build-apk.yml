@@ -31,15 +31,12 @@ steps:
     with:
       packages: platform-tools
 
-  - name: Accept Android SDK Licenses
-    run: yes | sdkmanager --licenses
-
   - name: Install Android SDK packages
     run: |
-      sdkmanager --install \
-        "platform-tools" \
-        "platforms;android-35" \
-        "build-tools;35.0.0"
+      sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
+
+  - name: Accept Android SDK Licenses
+    run: yes | sdkmanager --licenses || true
 
   - name: Install dependencies
     run: npm ci
